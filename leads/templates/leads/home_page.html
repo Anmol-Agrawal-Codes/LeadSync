@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Welcome to LeadSync.</h3>
+    <h6>Following are leads</h6>
+    <ul>
+        {% for lead in leads %}
+            <li>Lead name: {{ lead }}</li>
+            <li>Lead age: {{ lead.age }}</li>
+            <li>Lead agent: {{ lead.agent }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
