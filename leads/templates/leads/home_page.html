@@ -7,12 +7,11 @@
 </head>
 <body>
     <h3>Welcome to LeadSync.</h3>
+    <a href="{% url 'create-lead' %}">Create a lead</a>
     <h6>Following are leads</h6>
     <ul>
         {% for lead in leads %}
-            <li>Lead name: {{ lead }}</li>
-            <li>Lead age: {{ lead.age }}</li>
-            <li>Lead agent: {{ lead.agent }}</li>
+            <li><a href="{% url 'lead-details' lead.id %}">{{ lead }}</a></li>
         {% endfor %}
     </ul>
 </body>
