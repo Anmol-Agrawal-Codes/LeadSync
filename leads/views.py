@@ -4,7 +4,10 @@ from .models import Lead, Agent
 from .forms import LeadCreation
 # Create your views here.
 
-def home_page(request):
+def home(request):
+    return render(request, 'landing_page.html')
+
+def lead_page(request):
     lead = Lead.objects.all()
     context={
         "leads": lead
