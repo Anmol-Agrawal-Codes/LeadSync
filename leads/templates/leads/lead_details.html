@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lead-Detials</title>
-</head>
-<body>
-    <ul>
-        <li>Lead name: {{ lead }}</li>
-        <li>Lead age: {{ lead.age }}</li>
-        <li>Lead agent: {{ lead.agent }}</li>
-    </ul>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+<a href="{% url 'update-lead' lead.id %}">Update the lead details</a>
+<hr>
+<ul>
+    <li>Lead name: {{ lead }}</li>
+    <li>Lead age: {{ lead.age }}</li>
+    <li>Lead agent: {{ lead.agent }}</li>
+</ul>
+{% endblock content %}
