@@ -19,13 +19,32 @@ def lead_detail(request, pk):
 def create_lead(request):
     form = LeadCreation()
     if request.method == 'POST':
-        Lead.objects.create(
-            first_name = request.POST.get('first_name'),
-            last_name = request.POST.get('last_name'),
-            age = request.POST.get('age'),
-            agent = Agent.objects.get(id=request.POST.get('agent'))
-        )
+        form = LeadCreation(request.POST)
+        if(form.is_valid()):
+            lead_data = form.cleaned_data
+            Lead.objects.create(
+                first_name = lead_data.get('first_name'),
+                last_name = lead_data.get('last_name'),
+                age = lead_data.get('age'),
+                agent = lead_data.get('agent')
+            )
         return redirect('home')
 
     context = {'form': form}
     return render(request, 'leads/create_lead.html', context)
+
+def update_lead(request, pk):
+    lead = Lead.objects.get(id=pk)
+    form = LeadCreation(instance=lead)
+    if request.method == 'POST':
+        form = LeadCreation(request.POST, instance=lead)
+        if form.is_valid():
+            form.save()
+            return redirect('lead-details', pk)
+    context = {'form': form}
+    return render(request, 'leads/update_lead.html', context)
+
+def delete_lead(request, pk):
+    lead = Lead.objects.get(id=pk)
+    lead.delete()
+    return redirect('home')
